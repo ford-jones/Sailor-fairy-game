@@ -6,12 +6,9 @@
   "scripts": {
     "start": "electron ."
   },
-  "author": "rostegg",
+  "author": "ford jones",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rostegg/babylonjs-boilerplate/issues"
-  },
-  "homepage": "https://github.com/rostegg/babylonjs-boilerplate#readme",
+
   "devDependencies": {
     "css-loader": "^2.1.1",
     "eslint": "^4.4.1",
