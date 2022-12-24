@@ -1,10 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const BABYLON = require("babylonjs");
-// import wallWrap from "./assets/textures/bricks.jpg";
-// import floorWrap from "./assets/textures/tiles.jpg";
-// import vertShader from "./shaders/shader.vert";
-// import fragShader from "./shaders/shader.frag";
+/* GAME */
 class Renderer {
     createScene(canvas, engine) {
         this._canvas = canvas;
@@ -51,19 +48,19 @@ class Renderer {
         cubeFour.rotation.y = Math.PI / 2;
         const ground = BABYLON.Mesh.CreateGround("ground1", 10, 12, 2, scene);
         //  TEXTURES
-        // BABYLON.Effect.ShadersStore["customVertexShader"] = vertShader;
-        // BABYLON.Effect.ShadersStore["customFragmentShader"] = fragShader;
-        // const brickMaterial = new BABYLON.StandardMaterial();
-        // brickMaterial.diffuseTexture = new BABYLON.Texture(wallWrap, scene);
-        // const tileMaterial = new BABYLON.StandardMaterial();
-        // tileMaterial.diffuseTexture = new BABYLON.Texture(floorWrap, scene);
-        // ground.material = tileMaterial;
-        // cubeOne.material = brickMaterial;
-        // cubeTwo.material = brickMaterial;
-        // cubeThree.material = brickMaterial;
-        // cubeFour.material = brickMaterial;
+        setTimeout(() => {
+            const brickMaterial = new BABYLON.StandardMaterial('brickMaterial', scene);
+            brickMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
+            const tileMaterial = new BABYLON.StandardMaterial('tileMaterial', scene);
+            tileMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
+            ground.material = tileMaterial;
+            cubeOne.material = brickMaterial;
+            cubeTwo.material = brickMaterial;
+            cubeThree.material = brickMaterial;
+            cubeFour.material = brickMaterial;
+        }, 5000);
     }
-    //  INITIALISE RENDER LOOP
+    /* RENDER LOOP */
     initialize(canvas) {
         const engine = new BABYLON.Engine(canvas, true);
         this.createScene(canvas, engine);
