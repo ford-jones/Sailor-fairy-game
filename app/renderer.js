@@ -10,13 +10,24 @@ class Renderer {
         const scene = new BABYLON.Scene(engine);
         this._scene = scene;
         //  CAMERA
-        const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+        const camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(0, 10, 0), scene);
         camera.setTarget(BABYLON.Vector3.Zero());
-        camera.attachControl(canvas, true);
+        camera.attachControl(canvas, false);
+        camera.keysUp.push(87);
+        camera.keysDown.push(83);
+        camera.keysLeft.push(65);
+        camera.keysRight.push(68);
+        camera.angularSensibility = 8000;
+        camera.speed = 1;
+        camera.applyGravity = true;
+        camera.checkCollisions = true;
+        camera.ellipsoid = new BABYLON.Vector3(1, 4, 1);
+        camera.minZ = 0.3;
         //  AMBIENT FX
         const light = new BABYLON.PointLight('light1', new BABYLON.Vector3(5, 20, 0), scene);
         light.intensity = 3;
         scene.clearColor = new BABYLON.Color4(0, 0, 10);
+        scene.gravity = new BABYLON.Vector3(0, -0.9, 0);
         //  MUSIC
         setTimeout(() => {
             let music = document.getElementById('myAudio');
@@ -29,6 +40,7 @@ class Renderer {
             const maze = BABYLON.SceneLoader.ImportMesh('', './src/assets/models/', "uploads_files_197569_Maze.obj", scene, (meshes) => { console.log(meshes); });
             const ground = BABYLON.Mesh.CreateGround("ground1", 300, 300, 2, scene);
             ground.position.y = 1.5;
+            ground.checkCollisions = true;
             //  TEXTURES
             setTimeout(() => {
                 const groundMaterial = new BABYLON.StandardMaterial('groundMaterial', scene);
@@ -40,16 +52,25 @@ class Renderer {
         }
         ;
         environment('MazeV1', scene);
-        // //  TEXTURES
-        //   setTimeout(() => {
-        //     const brickMaterial = new BABYLON.StandardMaterial('brickMaterial', scene);
-        //     brickMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
-        //     ground.material = tileMaterial;
-        //     cubeOne.material = brickMaterial;
-        //     cubeTwo.material = brickMaterial;
-        //     cubeThree.material = brickMaterial;
-        //     cubeFour.material = brickMaterial;
-        //   }, 5000);
+        /* PLAYER */
+        // class Player {
+        //   position: any;
+        //   // camera: Camera;
+        //   minSpeed: number;
+        //   constructor(camera) {
+        //     this.position = camera.position
+        //     this.minSpeed = 0.45
+        //   }
+        //   updateLocation(camera) {
+        //     this.position = camera.position
+        //   }
+        //   walk() {
+        //     camera.speed = this.minSpeed
+        //   }
+        //   updatePlayer(camera) {
+        //     this.updateLocation(camera)
+        //   }
+        // } 
     }
     /* RENDER LOOP */
     initialize(canvas) {

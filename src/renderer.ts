@@ -1,5 +1,4 @@
 import * as BABYLON from 'babylonjs';
-import { Camera } from 'babylonjs';
 import 'babylonjs-loaders'
 
 /* GAME */
@@ -21,9 +20,19 @@ export default class Renderer {
         
         
         //  CAMERA
-        const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+        const camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(0, 10, 0), scene);
         camera.setTarget(BABYLON.Vector3.Zero());
-        camera.attachControl(canvas, true);
+        camera.attachControl(canvas, false);
+        camera.keysUp.push(87);
+        camera.keysDown.push(83);
+        camera.keysLeft.push(65);
+        camera.keysRight.push(68);
+        camera.angularSensibility = 8000;
+        camera.speed = 1;
+        camera.applyGravity = true;
+        camera.checkCollisions = true;
+        camera.ellipsoid = new BABYLON.Vector3(1, 4, 1);
+        camera.minZ = 0.3;
 
      
         
@@ -32,6 +41,7 @@ export default class Renderer {
         light.intensity = 3;
         
         scene.clearColor = new BABYLON.Color4(0, 0, 10);
+        scene.gravity = new BABYLON.Vector3(0, -0.9, 0);
         
         //  MUSIC
         setTimeout(() => {
@@ -46,9 +56,10 @@ export default class Renderer {
         //  MESHES
         function environment(name: string, scene: BABYLON.Scene) {
           const maze = BABYLON.SceneLoader.ImportMesh('', './src/assets/models/', "uploads_files_197569_Maze.obj", scene, (meshes) => {console.log(meshes)})
-      
+          
           const ground = BABYLON.Mesh.CreateGround("ground1", 300, 300, 2, scene);
           ground.position.y = 1.5
+          ground.checkCollisions = true
   
           //  TEXTURES
           setTimeout(() => {
@@ -67,26 +78,26 @@ export default class Renderer {
       environment('MazeV1', scene);
       
       /* PLAYER */
-      class Player {
-        position: any;
-        // camera: Camera;
-        minSpeed: number;
-        constructor(camera) {
-          this.position = camera.position
-          this.minSpeed = 0.45
+      // class Player {
+      //   position: any;
+      //   // camera: Camera;
+      //   minSpeed: number;
+      //   constructor(camera) {
+      //     this.position = camera.position
+      //     this.minSpeed = 0.45
           
-        }
-        updateLocation(camera) {
-          this.position = camera.position
-        }
-        walk() {
-          camera.speed = this.minSpeed
-        }
-        updatePlayer(camera) {
-          this.updateLocation(camera)
-        }
+      //   }
+      //   updateLocation(camera) {
+      //     this.position = camera.position
+      //   }
+      //   walk() {
+      //     camera.speed = this.minSpeed
+      //   }
+      //   updatePlayer(camera) {
+      //     this.updateLocation(camera)
+      //   }
         
-      } 
+      // } 
     }
 
     /* RENDER LOOP */
