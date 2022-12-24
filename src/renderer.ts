@@ -16,6 +16,9 @@ export default class Renderer {
         
         const scene = new BABYLON.Scene(engine);
         this._scene = scene;
+        scene.onPointerDown = (evt) => {
+          if (evt.button === 0) canvas.requestPointerLock()
+        }
       
         
         
@@ -84,6 +87,7 @@ export default class Renderer {
         const engine = new BABYLON.Engine(canvas, true);
   
         this.createScene(canvas, engine);
+    
 
         engine.runRenderLoop(() => {
             this._scene.render();
