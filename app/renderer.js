@@ -9,6 +9,10 @@ class Renderer {
         this._engine = engine;
         const scene = new BABYLON.Scene(engine);
         this._scene = scene;
+        scene.onPointerDown = (evt) => {
+            if (evt.button === 0)
+                canvas.requestPointerLock();
+        };
         //  CAMERA
         const camera = new BABYLON.UniversalCamera("camera1", new BABYLON.Vector3(0, 10, 0), scene);
         camera.setTarget(BABYLON.Vector3.Zero());
