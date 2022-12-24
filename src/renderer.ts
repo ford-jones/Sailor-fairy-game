@@ -89,16 +89,21 @@ export default class Renderer {
         //  TEXTURES
         // BABYLON.Effect.ShadersStore["customVertexShader"] = vertShader;
         // BABYLON.Effect.ShadersStore["customFragmentShader"] = fragShader;
-        const brickMaterial = new BABYLON.StandardMaterial('brickMaterial', scene);
-        brickMaterial.diffuseTexture = new BABYLON.Texture("./assets/textures/bricks.jpg", scene);
-        const tileMaterial = new BABYLON.StandardMaterial('tileMaterial', scene);
-        tileMaterial.diffuseTexture = new BABYLON.Texture("./assets/textures/tiles.jpg", scene);
+          setTimeout(() => {
+            const brickMaterial = new BABYLON.StandardMaterial('brickMaterial', scene);
+            brickMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
+            const tileMaterial = new BABYLON.StandardMaterial('tileMaterial', scene);
+            tileMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
+            
+            ground.material = tileMaterial;
+            cubeOne.material = brickMaterial;
+            cubeTwo.material = brickMaterial;
+            cubeThree.material = brickMaterial;
+            cubeFour.material = brickMaterial;
+            
+          }, 5000);
     
-        ground.material = tileMaterial;
-        cubeOne.material = brickMaterial;
-        cubeTwo.material = brickMaterial;
-        cubeThree.material = brickMaterial;
-        cubeFour.material = brickMaterial;
+    
     }
 
     /* RENDER LOOP */
