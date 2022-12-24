@@ -43,7 +43,7 @@ class Renderer {
         function environment(name, scene) {
             const maze = BABYLON.SceneLoader.ImportMeshAsync('', './src/assets/models/', "uploads_files_197569_Maze.obj", scene).then((x) => {
                 console.log('x: ', x.meshes);
-                // const mergedMaze = BABYLON.Mesh.MergeMeshes(x.meshes)
+                // This is hardcoded, check the console log and update the array figures for runtime
                 const mazeMaterial = new BABYLON.StandardMaterial('mazeMaterial', scene);
                 mazeMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
                 x.meshes[1].material = mazeMaterial;
