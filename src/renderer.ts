@@ -1,7 +1,5 @@
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders'
-import { Scene } from 'babylonjs/Legacy/legacy';
-import { createModuleResolutionCache } from 'typescript';
 
 /* GAME */
 export default class Renderer {
@@ -48,14 +46,20 @@ export default class Renderer {
         
         //  MESHES
         async function environment(name: string, scene: BABYLON.Scene): Promise<void> {
-          const maze = await BABYLON.SceneLoader.ImportMeshAsync('', './src/assets/models/', "MazeV1.obj", scene, (meshes) => {console.log('meshes: ', meshes)})
+          const maze = await BABYLON.SceneLoader.ImportMeshAsync('', './src/assets/models/', "MazeV1.obj", scene, (meshes) => {console.log(meshes)})
+          // maze.scaling.y = 5
+          const ground = BABYLON.Mesh.CreateGround("ground1", 100, 100, 2, scene);
   
           //  TEXTURES
           setTimeout(() => {
             const brickMaterial = new BABYLON.StandardMaterial('brickMaterial', scene);
             brickMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
    
+            const tileMaterial = new BABYLON.StandardMaterial('tileMaterial', scene);
+            tileMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
+            
             // maze.material = brickMaterial
+            ground.material = tileMaterial
             
        }, 5000);
 
@@ -63,55 +67,10 @@ export default class Renderer {
       environment('MazeV1', scene);
 
 
-        
-
-        // let cubeOne = BABYLON.MeshBuilder.CreateBox(
-        // "cubeOne",
-        //   { width: 10, height: 1.5, depth: 0.2 },
-        //   scene
-        // );
-        // cubeOne.position.x = 0;
-        // cubeOne.position.y = 0.7;
-        // cubeOne.position.z = 6;
-    
-        // let cubeTwo = BABYLON.MeshBuilder.CreateBox(
-        //   "cubeTwo",
-        //   { width: 10, height: 1.5, depth: 0.2 },
-        //   scene
-        // );
-        // cubeTwo.position.x = 0;
-        // cubeTwo.position.y = 0.7;
-        // cubeTwo.position.z = -6;
-    
-        // let cubeThree = BABYLON.MeshBuilder.CreateBox(
-        //   "cubeThree",
-        //   { width: 12, height: 1.5, depth: 0.2 },
-        //   scene
-        // );
-        // cubeThree.position.x = 4.9;
-        // cubeThree.position.y = 0.7;
-        // cubeThree.position.z = 0;
-        // cubeThree.rotation.y = Math.PI / 2;
-    
-        // let cubeFour = BABYLON.MeshBuilder.CreateBox(
-        //   "cubeFour",
-        //   { width: 12, height: 1.5, depth: 0.2 },
-        //   scene
-        // );
-        // cubeFour.position.x = -4.9;
-        // cubeFour.position.y = 0.7;
-        // cubeFour.position.z = 0;
-        // cubeFour.rotation.y = Math.PI / 2;
-
-
-        // const ground = BABYLON.Mesh.CreateGround("ground1", 10, 12, 2, scene);
-
         // //  TEXTURES
         //   setTimeout(() => {
         //     const brickMaterial = new BABYLON.StandardMaterial('brickMaterial', scene);
         //     brickMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
-        //     const tileMaterial = new BABYLON.StandardMaterial('tileMaterial', scene);
-        //     tileMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
             
         //     ground.material = tileMaterial;
         //     cubeOne.material = brickMaterial;
