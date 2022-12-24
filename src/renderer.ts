@@ -77,27 +77,6 @@ export default class Renderer {
       } ;
       environment('MazeV1', scene);
       
-      /* PLAYER */
-      // class Player {
-      //   position: any;
-      //   // camera: Camera;
-      //   minSpeed: number;
-      //   constructor(camera) {
-      //     this.position = camera.position
-      //     this.minSpeed = 0.45
-          
-      //   }
-      //   updateLocation(camera) {
-      //     this.position = camera.position
-      //   }
-      //   walk() {
-      //     camera.speed = this.minSpeed
-      //   }
-      //   updatePlayer(camera) {
-      //     this.updateLocation(camera)
-      //   }
-        
-      // } 
     }
 
     /* RENDER LOOP */
