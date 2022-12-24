@@ -1,10 +1,17 @@
-# Babylon.js boilerplate
-Support ES6, babel, eslint,dev live reload server, prod compression
-## Usage
-Run `npm install`
-### Available commands  
-  * `npm run dev` - run dev server with live reload  
-  * `npm run prod`- create prod bundle    
-### Files structure
-  * `src/js/index.js` - entry point  
-  * `index.html` - html template  
+# BabylonJS-Electron
+
+Tutorial by Justin Lam at dev.to: [Building a 3D application with Electron and BabylonJS using TypeScript](https://dev.to/justinctlam/building-a-3d-application-with-electron-and-babylonjs-using-typescript-2g29)
+
+Building
+
+```
+npm install
+npm run build
+npm start
+```
+
+Packaging
+
+```
+npm run dist
+```
