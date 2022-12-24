@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const BABYLON = require("babylonjs");
 // import wallWrap from "./assets/textures/bricks.jpg";
 // import floorWrap from "./assets/textures/tiles.jpg";
-const wallWrap = require("./assets/textures/bricks.jpg");
-const floorWrap = require("./assets/textures/tiles.jpg");
-const shader_vert_1 = require("./assets/shaders/shader.vert");
-const shader_frag_1 = require("./assets/shaders/shader.frag");
+// const wallWrap = require("./assets/textures/bricks.jpg")
+// const floorWrap = require("./assets/textures/tiles.jpg")
+// import vertShader from "./assets/shaders/shader.vert";
+// import fragShader from "./assets/shaders/shader.frag";
 /* GAME */
 class Renderer {
     createScene(canvas, engine) {
@@ -54,12 +54,12 @@ class Renderer {
         cubeFour.rotation.y = Math.PI / 2;
         const ground = BABYLON.Mesh.CreateGround("ground1", 10, 12, 2, scene);
         //  TEXTURES
-        BABYLON.Effect.ShadersStore["customVertexShader"] = shader_vert_1.default;
-        BABYLON.Effect.ShadersStore["customFragmentShader"] = shader_frag_1.default;
+        // BABYLON.Effect.ShadersStore["customVertexShader"] = vertShader;
+        // BABYLON.Effect.ShadersStore["customFragmentShader"] = fragShader;
         const brickMaterial = new BABYLON.StandardMaterial('brickMaterial', scene);
-        brickMaterial.diffuseTexture = new BABYLON.Texture(wallWrap, scene);
+        brickMaterial.diffuseTexture = new BABYLON.Texture("./assets/textures/bricks.jpg", scene);
         const tileMaterial = new BABYLON.StandardMaterial('tileMaterial', scene);
-        tileMaterial.diffuseTexture = new BABYLON.Texture(floorWrap, scene);
+        tileMaterial.diffuseTexture = new BABYLON.Texture("./assets/textures/tiles.jpg", scene);
         ground.material = tileMaterial;
         cubeOne.material = brickMaterial;
         cubeTwo.material = brickMaterial;
