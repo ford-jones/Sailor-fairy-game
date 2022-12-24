@@ -24,15 +24,13 @@ export default class Renderer {
         camera.setTarget(BABYLON.Vector3.Zero());
         camera.attachControl(canvas, true);
 
-        //  LIGHTS
-        const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-        light.intensity = 0.7;
-
+     
+        
         //  AMBIENT FX
-        scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
-        scene.fogDensity = 0.01;
-        scene.fogColor = new BABYLON.Color3(1, 1, 1);
-        scene.clearColor = new BABYLON.Color4(0, 0, 5);
+        const light = new BABYLON.PointLight('light1', new BABYLON.Vector3(5, 20, 0), scene)
+        light.intensity = 3;
+        
+        scene.clearColor = new BABYLON.Color4(0, 0, 10);
         
         //  MUSIC
         setTimeout(() => {
@@ -45,21 +43,22 @@ export default class Renderer {
       
         
         //  MESHES
-        async function environment(name: string, scene: BABYLON.Scene): Promise<void> {
-          const maze = await BABYLON.SceneLoader.ImportMeshAsync('', './src/assets/models/', "MazeV1.obj", scene, (meshes) => {console.log(meshes)})
-          // maze.scaling.y = 5
-          const ground = BABYLON.Mesh.CreateGround("ground1", 100, 100, 2, scene);
+        function environment(name: string, scene: BABYLON.Scene) {
+          const maze = BABYLON.SceneLoader.ImportMesh('', './src/assets/models/', "uploads_files_197569_Maze.obj", scene, (meshes) => {console.log(meshes)})
+      
+          const ground = BABYLON.Mesh.CreateGround("ground1", 300, 300, 2, scene);
+          ground.position.y = 1.5
   
           //  TEXTURES
           setTimeout(() => {
-            const brickMaterial = new BABYLON.StandardMaterial('brickMaterial', scene);
-            brickMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
+            const groundMaterial = new BABYLON.StandardMaterial('groundMaterial', scene);
+            groundMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
    
-            const tileMaterial = new BABYLON.StandardMaterial('tileMaterial', scene);
-            tileMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
+            const mazeMaterial = new BABYLON.StandardMaterial('mazeMaterial', scene);
+            mazeMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
             
-            // maze.material = brickMaterial
-            ground.material = tileMaterial
+            
+            ground.material = groundMaterial
             
        }, 5000);
 
