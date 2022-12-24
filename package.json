@@ -1,7 +1,7 @@
 {
-  "name": "babylonjselectron",
+  "name": "sailor-fairy-world",
   "version": "1.0.0",
-  "description": "This is a babylonjs electron sample",
+  "description": "Christmas present for @sailor.fairy created by Ford Jones.",
   "main": "./app/main.js",
   "scripts": {
     "build": "tsc",
