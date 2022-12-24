@@ -41,7 +41,14 @@ class Renderer {
         }, 5000);
         //  MESHES
         function environment(name, scene) {
-            const maze = BABYLON.SceneLoader.ImportMesh('', './src/assets/models/', "uploads_files_197569_Maze.obj", scene, (meshes) => { console.log(meshes); });
+            const maze = BABYLON.SceneLoader.ImportMeshAsync('', './src/assets/models/', "uploads_files_197569_Maze.obj", scene).then((x) => {
+                console.log('x: ', x.meshes);
+                // const mergedMaze = BABYLON.Mesh.MergeMeshes(x.meshes)
+                const mazeMaterial = new BABYLON.StandardMaterial('mazeMaterial', scene);
+                mazeMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
+                x.meshes[1].material = mazeMaterial;
+                x.meshes[1].checkCollisions = true;
+            });
             const ground = BABYLON.Mesh.CreateGround("ground1", 300, 300, 2, scene);
             ground.position.y = 1.5;
             ground.checkCollisions = true;
@@ -49,8 +56,6 @@ class Renderer {
             setTimeout(() => {
                 const groundMaterial = new BABYLON.StandardMaterial('groundMaterial', scene);
                 groundMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
-                const mazeMaterial = new BABYLON.StandardMaterial('mazeMaterial', scene);
-                mazeMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
                 ground.material = groundMaterial;
             }, 5000);
         }
