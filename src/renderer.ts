@@ -17,21 +17,32 @@ export default class Renderer {
         const scene = new BABYLON.Scene(engine);
         this._scene = scene;
 
+        //  CAMERA
         const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
-
         camera.setTarget(BABYLON.Vector3.Zero());
-
         camera.attachControl(canvas, true);
 
+        //  LIGHTS
         const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-
         light.intensity = 0.7;
 
+        //  AMBIENT FX
         scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
         scene.fogDensity = 0.05;
         scene.fogColor = new BABYLON.Color3(1, 1, 1);
         scene.clearColor = new BABYLON.Color4(0, 0, 1);
 
+        //  MUSIC
+        setTimeout(() => {
+          let music = document.getElementById('myAudio') as HTMLAudioElement
+          music.loop = true
+          music.autoplay = true
+          music.load()
+          
+        }, 5000);
+      
+
+        //  MESHES
         let cubeOne = BABYLON.MeshBuilder.CreateBox(
           "cubeOne",
           { width: 10, height: 1.5, depth: 0.2 },
@@ -73,6 +84,7 @@ export default class Renderer {
 
         const ground = BABYLON.Mesh.CreateGround("ground1", 10, 12, 2, scene);
 
+        //  TEXTURES
         // BABYLON.Effect.ShadersStore["customVertexShader"] = vertShader;
         // BABYLON.Effect.ShadersStore["customFragmentShader"] = fragShader;
         // const brickMaterial = new BABYLON.StandardMaterial();
@@ -87,8 +99,10 @@ export default class Renderer {
         // cubeFour.material = brickMaterial;
     }
 
+    //  INITIALISE RENDER LOOP
     initialize(canvas: HTMLCanvasElement) {
         const engine = new BABYLON.Engine(canvas, true);
+  
         this.createScene(canvas, engine);
 
         engine.runRenderLoop(() => {
