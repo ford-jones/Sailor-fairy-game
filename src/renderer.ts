@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs';
+import { Camera } from 'babylonjs';
 import 'babylonjs-loaders'
 
 /* GAME */
@@ -64,22 +65,28 @@ export default class Renderer {
 
       } ;
       environment('MazeV1', scene);
-
-
-        // //  TEXTURES
-        //   setTimeout(() => {
-        //     const brickMaterial = new BABYLON.StandardMaterial('brickMaterial', scene);
-        //     brickMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
-            
-        //     ground.material = tileMaterial;
-        //     cubeOne.material = brickMaterial;
-        //     cubeTwo.material = brickMaterial;
-        //     cubeThree.material = brickMaterial;
-        //     cubeFour.material = brickMaterial;
-            
-        //   }, 5000);
-    
-    
+      
+      /* PLAYER */
+      class Player {
+        position: any;
+        // camera: Camera;
+        minSpeed: number;
+        constructor(camera) {
+          this.position = camera.position
+          this.minSpeed = 0.45
+          
+        }
+        updateLocation(camera) {
+          this.position = camera.position
+        }
+        walk() {
+          camera.speed = this.minSpeed
+        }
+        updatePlayer(camera) {
+          this.updateLocation(camera)
+        }
+        
+      } 
     }
 
     /* RENDER LOOP */
