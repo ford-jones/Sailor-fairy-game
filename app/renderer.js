@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const BABYLON = require("babylonjs");
 require("babylonjs-loaders");
@@ -38,26 +47,42 @@ class Renderer {
             music.loop = true;
             music.autoplay = true;
             music.load();
-        }, 5000);
+        }, 3000);
         //  MESHES
         function environment(name, scene) {
-            const maze = BABYLON.SceneLoader.ImportMeshAsync('', './src/assets/models/', "uploads_files_197569_Maze.obj", scene).then((x) => {
-                console.log('x: ', x.meshes);
-                // This is hardcoded, check the console log and update the array figures for runtime
-                const mazeMaterial = new BABYLON.StandardMaterial('mazeMaterial', scene);
-                mazeMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
-                x.meshes[1].material = mazeMaterial;
-                x.meshes[1].checkCollisions = true;
+            return __awaiter(this, void 0, void 0, function* () {
+                const maze = yield BABYLON.SceneLoader.ImportMeshAsync('', './src/assets/models/', "uploads_files_197569_Maze.obj", scene).then((world) => {
+                    console.log('world: ', world);
+                    const ground = BABYLON.Mesh.CreateGround("ground1", 300, 300, 2, scene);
+                    //  TEXTURES & MESH PROPS
+                    const mazeMaterial = new BABYLON.StandardMaterial('mazeMaterial', scene);
+                    mazeMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
+                    // This is hardcoded, check the console log and update the array figures for runtime
+                    world.meshes[1].material = mazeMaterial;
+                    world.meshes[1].checkCollisions = true;
+                    const groundMaterial = new BABYLON.StandardMaterial('groundMaterial', scene);
+                    groundMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
+                    ground.position.y = 1.5;
+                    ground.checkCollisions = true;
+                    ground.material = groundMaterial;
+                });
+                //  SPRITES
+                let flashBook = new Array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10');
+                flashBook.forEach(() => {
+                    let flashIndex = flashBook[Math.floor(Math.random() * flashBook.length)];
+                    let flashTransfer = new Array;
+                    const spriteManagerFlash = new BABYLON.SpriteManager('flash', `./src/assets/sprites/sprite${flashIndex}.png`, 30, 450, scene);
+                    for (let z = 0; z < 100; z++) {
+                        let flash = new BABYLON.Sprite('flash', spriteManagerFlash);
+                        flash.position.x = Math.floor(Math.random() * 300 - 150);
+                        flash.position.z = Math.floor(Math.random() * 300 - 150);
+                        flash.position.y = 8;
+                        flash.height = 5;
+                        flash.width = 5;
+                        flashTransfer.push(flash);
+                    }
+                });
             });
-            const ground = BABYLON.Mesh.CreateGround("ground1", 300, 300, 2, scene);
-            ground.position.y = 1.5;
-            ground.checkCollisions = true;
-            //  TEXTURES
-            setTimeout(() => {
-                const groundMaterial = new BABYLON.StandardMaterial('groundMaterial', scene);
-                groundMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
-                ground.material = groundMaterial;
-            }, 5000);
         }
         ;
         environment('MazeV1', scene);
