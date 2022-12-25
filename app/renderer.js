@@ -67,8 +67,10 @@ class Renderer {
                     ground.material = groundMaterial;
                 });
                 //  SPRITES
-                const spriteManagerFlash = new BABYLON.SpriteManager('flash', './src/assets/sprites/sprite1.png', 300, 450, scene);
-                let flashSheet = new Array;
+                let flashBook = new Array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10');
+                let flashIndex = flashBook[Math.floor(Math.random() * flashBook.length)];
+                let flashTransfer = new Array;
+                const spriteManagerFlash = new BABYLON.SpriteManager('flash', `./src/assets/sprites/sprite${flashIndex}.png`, 300, 450, scene);
                 for (let z = 0; z < 100; z++) {
                     let flash = new BABYLON.Sprite('flash', spriteManagerFlash);
                     flash.position.x = Math.floor(Math.random() * 300 - 10);
@@ -76,7 +78,7 @@ class Renderer {
                     flash.position.y = 8;
                     flash.height = 5;
                     flash.width = 5;
-                    flashSheet.push(flash);
+                    flashTransfer.push(flash);
                 }
             });
         }
