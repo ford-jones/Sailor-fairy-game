@@ -90,8 +90,8 @@ export default class Renderer {
   
             for(let z = 0; z < 100; z++) {
               let flash = new BABYLON.Sprite('flash', spriteManagerFlash);
-              flash.position.x = Math.floor(Math.random() * 300 - 10);
-              flash.position.z = Math.floor(Math.random() * 300 - 10);
+              flash.position.x = Math.floor(Math.random() * 300 - 150);
+              flash.position.z = Math.floor(Math.random() * 300 - 150);
               flash.position.y = 8
               flash.height = 5
               flash.width = 5
