@@ -66,6 +66,16 @@ class Renderer {
                     ground.checkCollisions = true;
                     ground.material = groundMaterial;
                 });
+                //  SPRITES
+                const spriteManagerFlash = new BABYLON.SpriteManager('flash', './src/assets/sprites/sprite1.png', 100, 450, scene);
+                let flashSheet = new Array;
+                for (let z = 0; z < 100; z++) {
+                    let flash = new BABYLON.Sprite('flash', spriteManagerFlash);
+                    flash.position.x = Math.random() * 100 - 10;
+                    flash.position.z = Math.random() * 100 - 10;
+                    flash.position.y = 10;
+                    flashSheet.push(flash);
+                }
             });
         }
         ;

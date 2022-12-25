@@ -80,7 +80,17 @@ export default class Renderer {
 
           })
 
-  
+          //  SPRITES
+          const spriteManagerFlash = new BABYLON.SpriteManager('flash', './src/assets/sprites/sprite1.png', 100, 450, scene);
+
+          let flashSheet = new Array
+          for(let z = 0; z < 100; z++) {
+            let flash = new BABYLON.Sprite('flash', spriteManagerFlash);
+            flash.position.x = Math.floor(Math.random() * 100 - 10);
+            flash.position.z = Math.floor(Math.random() * 100 - 10);
+            flash.position.y = 10
+            flashSheet.push(flash)
+          }
           
           
       } ;
