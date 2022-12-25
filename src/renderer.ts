@@ -103,6 +103,13 @@ export default class Renderer {
           
       } ;
       environment('MazeV1', scene);
+
+      //  TEXT
+      setTimeout(() => {
+        const header = document.getElementById('header') as HTMLParagraphElement;
+        header.innerHTML = "I love you dotti!"
+        
+      }, 3000);
       
     }
 
