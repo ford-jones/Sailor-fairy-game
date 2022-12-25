@@ -86,6 +86,11 @@ class Renderer {
         }
         ;
         environment('MazeV1', scene);
+        //  TEXT
+        setTimeout(() => {
+            const header = document.getElementById('header');
+            header.innerHTML = "I love you dotti!";
+        }, 3000);
     }
     /* RENDER LOOP */
     initialize(canvas) {
