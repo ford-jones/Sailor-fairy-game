@@ -68,18 +68,20 @@ class Renderer {
                 });
                 //  SPRITES
                 let flashBook = new Array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10');
-                let flashIndex = flashBook[Math.floor(Math.random() * flashBook.length)];
-                let flashTransfer = new Array;
-                const spriteManagerFlash = new BABYLON.SpriteManager('flash', `./src/assets/sprites/sprite${flashIndex}.png`, 300, 450, scene);
-                for (let z = 0; z < 100; z++) {
-                    let flash = new BABYLON.Sprite('flash', spriteManagerFlash);
-                    flash.position.x = Math.floor(Math.random() * 300 - 10);
-                    flash.position.z = Math.floor(Math.random() * 300 - 10);
-                    flash.position.y = 8;
-                    flash.height = 5;
-                    flash.width = 5;
-                    flashTransfer.push(flash);
-                }
+                flashBook.forEach(() => {
+                    let flashIndex = flashBook[Math.floor(Math.random() * flashBook.length)];
+                    let flashTransfer = new Array;
+                    const spriteManagerFlash = new BABYLON.SpriteManager('flash', `./src/assets/sprites/sprite${flashIndex}.png`, 30, 450, scene);
+                    for (let z = 0; z < 100; z++) {
+                        let flash = new BABYLON.Sprite('flash', spriteManagerFlash);
+                        flash.position.x = Math.floor(Math.random() * 300 - 10);
+                        flash.position.z = Math.floor(Math.random() * 300 - 10);
+                        flash.position.y = 8;
+                        flash.height = 5;
+                        flash.width = 5;
+                        flashTransfer.push(flash);
+                    }
+                });
             });
         }
         ;
