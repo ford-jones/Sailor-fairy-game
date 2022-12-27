@@ -9,7 +9,7 @@
     "start": "electron ./app/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Ford Jones",
   "license": "ISC",
   "dependencies": {
     "babylonjs": "^4.1.0",
