@@ -58,7 +58,7 @@ export default class Renderer {
         
         //  MESHES
         async function environment(name: string, scene: BABYLON.Scene): Promise<void> {
-          const maze = await BABYLON.SceneLoader.ImportMeshAsync('', './src/assets/models/', "uploads_files_197569_Maze.obj", scene).then((world) => {
+          const maze = await BABYLON.SceneLoader.ImportMeshAsync('', './assets/models/', "uploads_files_197569_Maze.obj", scene).then((world) => {
             console.log('world: ', world)
             
             const ground = BABYLON.Mesh.CreateGround("ground1", 300, 300, 2, scene);
@@ -66,13 +66,13 @@ export default class Renderer {
             
             //  TEXTURES & MESH PROPS
             const mazeMaterial = new BABYLON.StandardMaterial('mazeMaterial', scene);
-            mazeMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/tiles.jpg", scene);
+            mazeMaterial.diffuseTexture = new BABYLON.Texture("./assets/textures/tiles.jpg", scene);
             // This is hardcoded, check the console log and update the array figures for runtime
              world.meshes[1].material = mazeMaterial
              world.meshes[1].checkCollisions = true 
 
              const groundMaterial = new BABYLON.StandardMaterial('groundMaterial', scene);
-             groundMaterial.diffuseTexture = new BABYLON.Texture("./src/assets/textures/bricks.jpg", scene);
+             groundMaterial.diffuseTexture = new BABYLON.Texture("./assets/textures/bricks.jpg", scene);
              
              ground.position.y = 1.5
              ground.checkCollisions = true
@@ -86,7 +86,7 @@ export default class Renderer {
             let flashIndex = flashBook[Math.floor(Math.random() * flashBook.length)]
             let flashTransfer = new Array
 
-            const spriteManagerFlash = new BABYLON.SpriteManager('flash', `./src/assets/sprites/sprite${flashIndex}.png`, 30, 450, scene);
+            const spriteManagerFlash = new BABYLON.SpriteManager('flash', `./assets/sprites/sprite${flashIndex}.png`, 30, 450, scene);
   
             for(let z = 0; z < 100; z++) {
               let flash = new BABYLON.Sprite('flash', spriteManagerFlash);
