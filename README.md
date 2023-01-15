@@ -33,9 +33,14 @@ DONT FORGET TO RUN THE BUILD BEFORE FOLLOWING THESE STEPS!!!
 
 
 # Package the app:
-Package the macOS .app, (older machines should use the --arch=x32 flag to package as a 32bit application).
+macOS:
 ```
 electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=false --out=sailor-fairy-world
+```
+
+Windows:
+```
+electron-packager . sailor-fairy-game --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=false --out=sailor-fairy-game --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName="Sailor Fairy WORLD"
 ```
 
 # Move .obj files into package manually:
