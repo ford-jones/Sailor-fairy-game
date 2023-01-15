@@ -86,7 +86,7 @@ export default class Renderer {
       //  TEXT
       setTimeout(() => {
         const header = document.getElementById('header') as HTMLParagraphElement;
-        header.innerHTML = "Merry christmas mum!"
+        header.innerHTML = "Merry christmas dad!"
         
       }, 3000);
       

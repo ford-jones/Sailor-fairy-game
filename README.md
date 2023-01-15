@@ -20,8 +20,13 @@ npm start
 
 
 # Package the app, this will create a new folder in your root directory:
+Mac:
 ```
 electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=false --out=sailor-fairy-world
+```
+
+Windows:
+```
 ```
 
 # Make sure to enter this into your command line from the root. One of the async assets don't transfer in the packaging process so you will need to enter it manually:

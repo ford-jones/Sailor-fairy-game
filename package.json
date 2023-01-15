@@ -1,8 +1,8 @@
 {
-  "name": "merry-christmas-mum",
-  "productName": "Merry christmas mum!",
+  "name": "merry-christmas-dad",
+  "productName": "Merry christmas dad!",
   "version": "1.0.0",
-  "description": "Christmas present for my mum created by Ford Jones.",
+  "description": "Christmas present for my dad created by Ford Jones.",
   "main": "./app/main.js",
   "scripts": {
     "build": "tsc",
